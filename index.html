@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget — Claw</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🪶 Budget</div>
+    <div class="tabs">
+      <button class="tab active" data-page="budget">Budget</button>
+      <button class="tab" data-page="summary">Résumé</button>
+      <button class="tab" data-page="history">Historique</button>
+    </div>
+  </header>
+
+  <!-- BUDGET PAGE -->
+  <div id="page-budget" class="page active">
+    <div class="month-nav">
+      <button onclick="prevMonth()">← Précédent</button>
+      <div class="month-label" id="monthLabel">—</div>
+      <button onclick="nextMonth()">Suivant →</button>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-box">
+        <div class="summary-value" id="totalEstimated">—</div>
+        <div class="summary-label">Estimé</div>
+      </div>
+      <div class="summary-box">
+        <div class="summary-value" id="totalActual">—</div>
+        <div class="summary-label">Réel</div>
+      </div>
+      <div class="summary-box">
+        <div class="summary-value" id="balance">—</div>
+        <div class="summary-label">Solde</div>
+      </div>
+      <div class="summary-box">
+        <div class="summary-value" id="remaining">—</div>
+        <div class="summary-label">Reste (estimé)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Revenu</div>
+      <div class="salary-row">
+        <label>Salaire net mensuel</label>
+        <input type="number" step="0.01" class="salary-input" id="salaryInput" onchange="updateSalary()" />
+        <span style="color:var(--dim)">€</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dépenses</div>
+      <table class="expense-table">
+        <thead>
+          <tr>
+            <th>Libellé</th>
+            <th>Catégorie</th>
+            <th>Type</th>
+            <th>Estimé (€)</th>
+            <th>Réel (€)</th>
+            <th>Écart</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="expenseBody"></tbody>
+      </table>
+      <div class="add-row">
+        <button class="btn btn-accent" onclick="addExpense()">+ Ajouter une dépense</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY PAGE -->
+  <div id="page-summary" class="page">
+    <div class="month-nav" style="margin-bottom:24px">
+      <div class="month-label" id="summaryMonthLabel">—</div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="card">
+        <div class="card-title">Répartition par catégorie</div>
+        <div class="chart-container"><canvas id="chartDonut"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Estimé vs Réel par catégorie</div>
+        <div class="chart-container"><canvas id="chartBar"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Répartition du salaire</div>
+      <div class="chart-container" style="height:120px"><canvas id="chartStacked"></canvas></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">Comparaison estimé / réel</div>
+      <div class="chart-container"><canvas id="chartComparison"></canvas></div>
+    </div>
+  </div>
+
+  <!-- HISTORY PAGE -->
+  <div id="page-history" class="page">
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">Évolution</div>
+      <div class="chart-container" style="height:200px"><canvas id="chartHistory"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Historique par mois</div>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Mois</th>
+            <th>Salaire</th>
+            <th>Estimé</th>
+            <th>Réel</th>
+            <th>Fixe</th>
+            <th>Variable</th>
+            <th>Solde</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>🪶 Claw Budget App</footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
