@@ -92,17 +92,17 @@ function expenseRow(e) {
   const diffText = diff >= 0 ? `+${fmt(diff)}` : fmt(diff);
   return `
     <tr data-id="${e.id}">
-      <td><input value="${e.label}" onchange="updateExpense(${e.id}, 'label', this.value)" /></td>
-      <td><input value="${e.category}" onchange="updateExpense(${e.id}, 'category', this.value)" /></td>
-      <td>
+      <td data-label="Libellé"><input value="${e.label}" onchange="updateExpense(${e.id}, 'label', this.value)" /></td>
+      <td data-label="Catégorie"><input value="${e.category}" onchange="updateExpense(${e.id}, 'category', this.value)" /></td>
+      <td data-label="Type">
         <select onchange="updateExpense(${e.id}, 'type', this.value)">
           <option value="fixed" ${e.type === 'fixed' ? 'selected' : ''}>Fixe</option>
           <option value="variable" ${e.type === 'variable' ? 'selected' : ''}>Variable</option>
         </select>
       </td>
-      <td><input type="number" step="0.01" value="${e.estimated}" onchange="updateExpense(${e.id}, 'estimated', +this.value)" /></td>
-      <td><input type="number" step="0.01" value="${e.actual}" onchange="updateExpense(${e.id}, 'actual', +this.value)" /></td>
-      <td class="${diffClass}" style="font-size:12px;white-space:nowrap">${diffText}</td>
+      <td data-label="Estimé"><input type="number" step="0.01" value="${e.estimated}" onchange="updateExpense(${e.id}, 'estimated', +this.value)" /></td>
+      <td data-label="Réel"><input type="number" step="0.01" value="${e.actual}" onchange="updateExpense(${e.id}, 'actual', +this.value)" /></td>
+      <td data-label="Écart" class="${diffClass}" style="font-size:12px;white-space:nowrap">${diffText}</td>
       <td><button class="btn btn-danger btn-sm" onclick="deleteExpense(${e.id})">×</button></td>
     </tr>`;
 }

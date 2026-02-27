@@ -130,8 +130,50 @@ canvas { width: 100%; height: 100%; }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .container { padding: 12px; }
+
+  header { flex-direction: column; gap: 12px; align-items: stretch; }
+  .tabs { justify-content: center; }
+  .tab { padding: 8px 14px; font-size: 12px; }
+
+  .month-nav { gap: 8px; justify-content: center; }
+  .month-nav button { padding: 8px 10px; font-size: 12px; }
+  .month-label { font-size: 15px; min-width: auto; }
+
+  .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .summary-value { font-size: 20px; }
+  .summary-box { padding: 12px; }
+
+  .salary-row { flex-wrap: wrap; }
+  .salary-input { width: 140px; font-size: 14px; }
+
   .charts-grid { grid-template-columns: 1fr; }
-  .summary-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Card table : mode cartes empilées sur mobile */
+  .expense-table thead { display: none; }
+  .expense-table, .expense-table tbody, .expense-table tr, .expense-table td {
+    display: block; width: 100%;
+  }
+  .expense-table tr {
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: center;
+  }
+  .expense-table tr[data-id] td:nth-child(1) { grid-column: 1 / -1; font-weight: 600; }
+  .expense-table td { padding: 2px 4px; border: none; }
+  .expense-table input { font-size: 14px; }
+  .expense-table input[type="number"] { width: 100%; }
+  .expense-table select { width: 100%; }
+
+  /* Section headers dans le tableau */
+  .expense-table tr:not([data-id]) td { font-size: 11px; }
+
+  /* History table responsive */
+  .history-table { font-size: 11px; }
+  .history-table th, .history-table td { padding: 6px 4px; }
+  .history-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .card { padding: 14px; }
+  .btn-accent { width: 100%; text-align: center; padding: 12px; }
 }
 
 /* Page sections */
