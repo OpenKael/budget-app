@@ -1,1 +1,3 @@
-*.db\n*.db-wal\n*.db-shm
+*.db
+*.db-wal
+*.db-shm
