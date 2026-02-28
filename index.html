@@ -51,14 +51,14 @@
         <div class="salary-person">
           <input type="text" class="name-input" id="nameP1" value="Personne 1" onchange="updateSalary()" />
           <div class="salary-row">
-            <input type="number" step="0.01" class="salary-input" id="salaryP1" onchange="updateSalary()" />
+            <input type="number" step="0.01" class="salary-input" id="salaryP1" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'" onchange="updateSalary()" />
             <span class="salary-euro">€</span>
           </div>
         </div>
         <div class="salary-person">
           <input type="text" class="name-input" id="nameP2" value="Personne 2" onchange="updateSalary()" />
           <div class="salary-row">
-            <input type="number" step="0.01" class="salary-input" id="salaryP2" onchange="updateSalary()" />
+            <input type="number" step="0.01" class="salary-input" id="salaryP2" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'" onchange="updateSalary()" />
             <span class="salary-euro">€</span>
           </div>
         </div>

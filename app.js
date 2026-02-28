@@ -144,8 +144,8 @@ function expenseRow(e, prorata) {
           <option value="variable" ${e.type === 'variable' ? 'selected' : ''}>Variable</option>
         </select>
       </td>
-      <td data-label="Estimé"><input type="number" step="0.01" value="${e.estimated}" onchange="updateExpense(${e.id})" /></td>
-      <td data-label="Réel"><input type="number" step="0.01" value="${e.actual}" onchange="updateExpense(${e.id})" /></td>
+      <td data-label="Estimé"><input type="number" step="0.01" value="${e.estimated || ''}" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'" onchange="updateExpense(${e.id})" /></td>
+      <td data-label="Réel"><input type="number" step="0.01" value="${e.actual || ''}" onfocus="if(this.value==='0')this.value=''" onblur="if(this.value==='')this.value='0'" onchange="updateExpense(${e.id})" /></td>
       <td data-label="Répartition">
         <div class="split-control">
           <select class="split-select" onchange="updateExpense(${e.id})">
