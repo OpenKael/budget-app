@@ -33,14 +33,14 @@ function prevMonth() {
   const [y, m] = currentMonth.split('-').map(Number);
   const d = new Date(y, m - 2, 1);
   currentMonth = d.toISOString().slice(0, 7);
-  if (currentPage === 'budget') loadMonth();
+  loadMonth();
 }
 
 function nextMonth() {
   const [y, m] = currentMonth.split('-').map(Number);
   const d = new Date(y, m, 1);
   currentMonth = d.toISOString().slice(0, 7);
-  if (currentPage === 'budget') loadMonth();
+  loadMonth();
 }
 
 // Effective split for an expense
