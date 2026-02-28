@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget — Claw</title>
+<title>Budget Couple — Claw</title>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="logo">🪶 Budget</div>
+    <div class="logo">🪶 Budget Couple</div>
     <div class="tabs">
       <button class="tab active" data-page="budget">Budget</button>
       <button class="tab" data-page="summary">Résumé</button>
@@ -36,7 +36,7 @@
       </div>
       <div class="summary-box">
         <div class="summary-value" id="balance">—</div>
-        <div class="summary-label">Solde</div>
+        <div class="summary-label">Solde couple</div>
       </div>
       <div class="summary-box">
         <div class="summary-value" id="remaining">—</div>
@@ -44,15 +44,29 @@
       </div>
     </div>
 
+    <!-- Revenus couple -->
     <div class="card">
-      <div class="card-title">Revenu</div>
-      <div class="salary-row">
-        <label>Salaire net mensuel</label>
-        <input type="number" step="0.01" class="salary-input" id="salaryInput" onchange="updateSalary()" />
-        <span style="color:var(--dim)">€</span>
+      <div class="card-title">Revenus du couple</div>
+      <div class="salary-grid">
+        <div class="salary-person">
+          <input type="text" class="name-input" id="nameP1" value="Personne 1" onchange="updateSalary()" />
+          <div class="salary-row">
+            <input type="number" step="0.01" class="salary-input" id="salaryP1" onchange="updateSalary()" />
+            <span class="salary-euro">€</span>
+          </div>
+        </div>
+        <div class="salary-person">
+          <input type="text" class="name-input" id="nameP2" value="Personne 2" onchange="updateSalary()" />
+          <div class="salary-row">
+            <input type="number" step="0.01" class="salary-input" id="salaryP2" onchange="updateSalary()" />
+            <span class="salary-euro">€</span>
+          </div>
+        </div>
       </div>
+      <div class="prorata-info" id="prorataInfo">—</div>
     </div>
 
+    <!-- Dépenses -->
     <div class="card">
       <div class="card-title">Dépenses</div>
       <table class="expense-table">
@@ -63,6 +77,7 @@
             <th>Type</th>
             <th>Estimé (€)</th>
             <th>Réel (€)</th>
+            <th>Répartition</th>
             <th>Écart</th>
             <th></th>
           </tr>
@@ -73,12 +88,20 @@
         <button class="btn btn-accent" onclick="addExpense()">+ Ajouter une dépense</button>
       </div>
     </div>
+
+    <!-- Résumé par personne -->
+    <div class="card">
+      <div class="card-title">Résumé par personne</div>
+      <div class="person-summary-grid" id="personSummary"></div>
+    </div>
   </div>
 
   <!-- SUMMARY PAGE -->
   <div id="page-summary" class="page">
     <div class="month-nav" style="margin-bottom:24px">
+      <button onclick="prevMonth();if(currentPage==='summary')loadSummary()">←</button>
       <div class="month-label" id="summaryMonthLabel">—</div>
+      <button onclick="nextMonth();if(currentPage==='summary')loadSummary()">→</button>
     </div>
 
     <div class="charts-grid">
@@ -87,14 +110,14 @@
         <div class="chart-container"><canvas id="chartDonut"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-title">Estimé vs Réel par catégorie</div>
-        <div class="chart-container"><canvas id="chartBar"></canvas></div>
+        <div class="card-title">Répartition par personne</div>
+        <div class="chart-container"><canvas id="chartPersonSplit"></canvas></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">Répartition du salaire</div>
-      <div class="chart-container" style="height:120px"><canvas id="chartStacked"></canvas></div>
+      <div class="card-title">Répartition du budget couple</div>
+      <div class="chart-container" style="height:160px"><canvas id="chartStacked"></canvas></div>
     </div>
 
     <div class="card" style="margin-top:16px">
@@ -116,11 +139,10 @@
         <thead>
           <tr>
             <th>Mois</th>
-            <th>Salaire</th>
-            <th>Estimé</th>
-            <th>Réel</th>
-            <th>Fixe</th>
-            <th>Variable</th>
+            <th>Revenus</th>
+            <th>Dépensé</th>
+            <th id="histP1">P1</th>
+            <th id="histP2">P2</th>
             <th>Solde</th>
           </tr>
         </thead>
@@ -129,7 +151,7 @@
     </div>
   </div>
 
-  <footer>🪶 Claw Budget App</footer>
+  <footer>🪶 Claw Budget Couple</footer>
 </div>
 <script src="/app.js"></script>
 </body>
